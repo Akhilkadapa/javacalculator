@@ -1,46 +1,76 @@
 import java.util.Scanner;
 
-public class BasicCalculator {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        // Get user input for two numbers
-        System.out.print("Enter the first number: ");
-        double num1 = scanner.nextDouble();
 
-        System.out.print("Enter the second number: ");
-        double num2 = scanner.nextDouble();
+    public class BasicCalculator {
+        public static void main(String[] args) {
+            // Create a Scanner object for user input
+            Scanner scanner = new Scanner(System.in);
 
-        // Get user input for the operation
-        System.out.print("Enter the operation (+, -, *, /): ");
-        char operator = scanner.next().charAt(0);
+            // Get user input for two numbers
+            double num1 = getValidNumber("Enter the first number: ");
+            double num2 = getValidNumber("Enter the second number: ");
 
-        // Perform the calculation based on the operator
-        double result = 0.0;
-        switch (operator) {
-            case '+':
-                result = num1 + num2;
-                break;
-            case '-':
-                result = num1 - num2;
-                break;
-            case '*':
-                result = num1 * num2;
-                break;
-            case '/':
-                if (num2 != 0) {
-                    result = num1 / num2;
-                } else {
-                    System.out.println("Error: Cannot divide by zero.");
-                    return; // Exit the program
-                }
-                break;
-            default:
-                System.out.println("Error: Invalid operator.");
-                return; // Exit the program
+            // Get user input for the operation
+            char operator = getValidOperator("Enter the operation (+, -, *, /): ");
+
+            // Perform the calculation based on the operator
+            double result = performCalculation(num1, num2, operator);
+
+            // Display the result
+            System.out.println("Result: " + result);
         }
 
-        // Display the result
-        System.out.println("Result: " + result);
+        // Function to get a valid numeric input from the user
+        private static double getValidNumber(String prompt) {
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                try {
+                    System.out.print(prompt);
+                    return scanner.nextDouble();
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                    scanner.nextLine();  // Consume the invalid input
+                }
+            }
+        }
+
+        // Function to get a valid operator input from the user
+        private static char getValidOperator(String prompt) {
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.print(prompt);
+                String input = scanner.next();
+                if (input.length() == 1 && "+-*/".contains(input)) {
+                    return input.charAt(0);
+                } else {
+                    System.out.println("Invalid input. Please enter a valid operator (+, -, *, /).");
+                }
+            }
+        }
+
+        // Function to perform the calculation based on user inputs
+        private static double performCalculation(double num1, double num2, char operator) {
+            switch (operator) {
+                case '+':
+                    return num1 + num2;
+                case '-':
+                    return num1 - num2;
+                case '*':
+                    return num1 * num2;
+                case '/':
+                    if (num2 != 0) {
+                        return num1 / num2;
+                    } else {
+                        System.out.println("Error: Cannot divide by zero.");
+                        System.exit(1);  // Exit the program
+                    }
+                default:
+                    System.out.println("Error: Invalid operator.");
+                    System.exit(1);  // Exit the program
+            }
+            return 0;  // This should not be reached
+        }
     }
-}
+
+
