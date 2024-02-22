@@ -1,6 +1,8 @@
 package validators;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Validator {
 
     public static double getValidNumber(Scanner scanner, String prompt) {
@@ -26,4 +28,6 @@ public class Validator {
             }
         }
     }
+
+
 }

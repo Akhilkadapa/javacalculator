@@ -1,26 +1,26 @@
-package Application;
+import readers.UserInput;
 import validators.Validator;
-
+import service.BasicCalculator;
 
 
 import java.util.List;
-import java.util.Scanner;
-public class CalApplication {
+
+public class Application {
 
 
     public static void main(String[] args) {
-        // Create a UserInput instance
+        // Create a readers.UserInput instance
         UserInput userInput = new UserInput();
         List<Integer> numbers =userInput.getNumbers();
-        String Operator = userInput.getoperation();
+        String Operator = userInput.getOperation();
 
         Validator validator = new Validator();
-        validator.getValidNumbers();
-        validator.getValidopertor();
+        validator.getValidNumber();
+        validator.getValidOpertor();
 
-        String result = CalApplication.calculate(numbers,operator);
+        String result = Application.calculate(numbers,Operator);
 
-        sys.out.print(result);
+        system.out.print(result);
 
         // create a userInput instance
         UserInput userInput = new UserInput();
