@@ -1,5 +1,5 @@
 
-import java.util.Scanner;
+import validators.Validator;
 import java.util.Scanner;
 
 public class UserInput {
