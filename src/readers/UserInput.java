@@ -21,7 +21,7 @@ public class UserInput {
         double num2 = Validator.getValidNumber(scanner, "Enter the second number: ");
 
         // Get user input for the operation
-        String operator = Validator.getValidOperator(scanner, "Enter the operation (+, -, *, /): ");
+        String Operator = Validator.getValidOperator(scanner, "Enter the operation (+, -, *, /): ");
 
         // Create a service.BasicCalculator instance and perform the calculation
         BasicCalculator calculator = new BasicCalculator();

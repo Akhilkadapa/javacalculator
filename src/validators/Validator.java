@@ -17,17 +17,18 @@ public class Validator {
         }
     }
 
-    public static char getValidOperator(Scanner scanner, String prompt) {
+    public static String getValidOperator(Scanner scanner, String prompt) {
         while (true) {
             System.out.print(prompt);
             String input = scanner.next();
             if (input.length() == 1 && "+-*/".contains(input)) {
-                return input.charAt(0);
+                return input;  // Return the whole String
             } else {
                 System.out.println("Invalid input. Please enter a valid operator (+, -, *, /).");
             }
         }
     }
+
 
 
 }
