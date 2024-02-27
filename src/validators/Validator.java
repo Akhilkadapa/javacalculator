@@ -1,34 +1,42 @@
+
 package validators;
 
-
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Validator {
+        public class Validator {
 
-    public static double getValidNumber(Scanner scanner, String prompt) {
-        while (true) {
-            try {
-                System.out.print(prompt);
-                return scanner.nextDouble();
-            } catch (java.util.InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-                scanner.nextLine();  // Consume the invalid input
+            public double getValidNumber(Scanner scanner, String prompt) {
+                while (true) {
+                    try {
+                        System.out.print(prompt);
+                        return Double.parseDouble(scanner.next());
+                    } catch (NumberFormatException e) {
+                        // Consume invalid input
+                        scanner.nextLine();
+                    }
+                }
             }
-        }
-    }
-
-    public static String getValidOperator(Scanner scanner, String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            String input = scanner.next();
-            if (input.length() == 1 && "+-*/".contains(input)) {
-                return input;  // Return the whole String
-            } else {
-                System.out.println("Invalid input. Please enter a valid operator (+, -, *, /).");
+            public String getValidOperator(Scanner scanner, String prompt) throws IllegalArgumentException {
+                while (true) {
+                    try {
+                        System.out.print(prompt);
+                        String input = scanner.next();
+                        if (input.length() == 1 && "+-*/".contains(input)) {
+                            return input;  // Return the valid operator
+                        } else {
+                            throw new IllegalArgumentException("Invalid input. Please enter a valid operator (+, -, *, /).");
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                        // Consume invalid input
+                        scanner.nextLine();
+                    }
+                }
             }
+
         }
-    }
 
 
 
-}
+

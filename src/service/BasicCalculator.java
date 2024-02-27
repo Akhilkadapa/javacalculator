@@ -3,7 +3,8 @@ package service;
 import java.util.Scanner;
 public class BasicCalculator {
 
-    public double performCalculation(double num1, double num2, String operator) {
+
+    public double performCalculation(double num1, double num2, String operator) throws ArithmeticException, IllegalArgumentException {
         switch (operator) {
             case "+":
                 return num1 + num2;
@@ -15,14 +16,10 @@ public class BasicCalculator {
                 if (num2 != 0) {
                     return num1 / num2;
                 } else {
-                    System.out.println("Error: Cannot divide by zero.");
-                    System.exit(1);  // Exit the program
+                    throw new ArithmeticException("Cannot divide by zero.");
                 }
             default:
-                System.out.println("Error: Invalid operator.");
-                System.exit(1);  // Exit the program
+                throw new IllegalArgumentException("Invalid operator.");
         }
-        return 0;
     }
 }
-
