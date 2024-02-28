@@ -19,33 +19,35 @@ public class UserInput {
     }
 
     public List<Double> getNumbers() throws IllegalArgumentException {
+        List<Double> numbers = new ArrayList<>();
+
         try {
-            System.out.println("Enter number 1:");
-            double num1 = validator.getValidNumber(scanner.next());
+            System.out.print("Enter number 1: ");
+            numbers.add(validator.getValidNumber(getStringInput()));
 
-            System.out.println("Enter number 2:");
-            double num2 = validator.getValidNumber(scanner.next());
+            System.out.print("Enter number 2: ");
+            numbers.add(validator.getValidNumber(getStringInput()));
 
-            return List.of(num1, num2);
+            return numbers;
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Error: " + e.getMessage());
+            throw new IllegalArgumentException("Invalid input for numbers. " + e.getMessage());
         }
     }
 
     public String getOperation() throws IllegalArgumentException {
         try {
-            System.out.println("Enter the operation (+, -, *, /):");
-            return validator.getValidOperator(scanner.next());
+            System.out.print("Enter the operation (+, -, *, /): ");
+            return validator.getValidOperator(getStringInput());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Error: " + e.getMessage());
+            throw new IllegalArgumentException("Invalid input for operation. " + e.getMessage());
         }
     }
 
+    public String getStringInput() {
+        return scanner.next();
+    }
+
     public void closeScanner() {
-        // Close the scanner
         scanner.close();
     }
 }
-
-
-

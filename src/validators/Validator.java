@@ -3,6 +3,8 @@ package validators;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import java.util.Scanner;
+
 public class Validator {
 
     public double getValidNumber(String input) throws IllegalArgumentException {
@@ -15,16 +17,9 @@ public class Validator {
     }
 
     public String getValidOperator(String input) throws IllegalArgumentException {
-        for (char c : input.toCharArray()) {
-            if ("+-*/".indexOf(c) == -1) {
-                throw new IllegalArgumentException("Invalid input. Please enter a valid operator (+, -, *, /).");
-            }
+        if (!input.matches("[-+*/]")) {
+            throw new IllegalArgumentException("Invalid input. Please enter a valid operator (+, -, *, /).");
         }
         return input;  // Return the valid operator
     }
 }
-
-
-
-
-
