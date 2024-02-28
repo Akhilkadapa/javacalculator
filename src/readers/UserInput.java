@@ -7,30 +7,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class UserInput {
 
     private Scanner scanner;
+    private Validator validator;
 
     public UserInput() {
         this.scanner = new Scanner(System.in);
+        this.validator = new Validator();
     }
 
-    public List<Double> getNumbers() {
-        Validator validator = new Validator();
-        List<Double> numbers = new ArrayList<>();
+    public List<Double> getNumbers() throws IllegalArgumentException {
+        try {
+            System.out.println("Enter number 1:");
+            double num1 = validator.getValidNumber(scanner.next());
 
-        System.out.println("Enter the numbers:");
+            System.out.println("Enter number 2:");
+            double num2 = validator.getValidNumber(scanner.next());
 
-        for (int i = 0; i < 2; i++) {
-            numbers.add(validator.getValidNumber(scanner, "Number " + (i + 1) + ": "));
+            return List.of(num1, num2);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Error: " + e.getMessage());
         }
-
-        return numbers;
     }
 
-    public String getOperation() {
-        Validator validator = new Validator();
-        return validator.getValidOperator(scanner, "Enter the Operation (+, -, *, /): ");
+    public String getOperation() throws IllegalArgumentException {
+        try {
+            System.out.println("Enter the operation (+, -, *, /):");
+            return validator.getValidOperator(scanner.next());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Error: " + e.getMessage());
+        }
     }
 
     public void closeScanner() {
@@ -38,5 +46,6 @@ public class UserInput {
         scanner.close();
     }
 }
+
 
 
