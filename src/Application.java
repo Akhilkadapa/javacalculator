@@ -13,7 +13,7 @@ public class Application {
         Validator validator = new Validator();
 
 
-
+        try {
         // Get inputs
         List<String> inputs = userInput.getInputs();
 
@@ -29,7 +29,12 @@ public class Application {
         double result = calculator.performCalculation(num1, num2, operator);
 
         System.out.print("Result: " + result);
-
+        } catch (ArithmeticException | IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            // Close the scanner
+            userInput.closeScanner();
+        }
         // Close the scanner
         userInput.closeScanner();
     }
