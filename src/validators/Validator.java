@@ -1,24 +1,27 @@
 
 package validators;
-import java.util.InputMismatchException;
-
-import java.util.Scanner;
-
 public class Validator {
 
-    public double getValidNumber(String input) throws IllegalArgumentException {
-        try {
-            return Double.parseDouble(input);
-        } catch (NumberFormatException e) {
-            // Consume invalid input
-            throw new IllegalArgumentException("Invalid input. Please enter a valid number.");
-        }
-    }
 
-    public String getValidOperator(String input) throws IllegalArgumentException {
-        if (!input.matches("[-+*/]")) {
-            throw new IllegalArgumentException("Invalid input. Please enter a valid operator (+, -, *, /).");
+        public double getValidNumber(String input) throws IllegalArgumentException {
+            try {
+                validateIsNumber(input);
+                return Double.parseDouble(input);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Invalid input. Please enter a valid number.");
+            }
         }
-        return input;  // Return the valid operator
+
+        public String getValidOperator(String input) throws IllegalArgumentException {
+            if (!input.matches("[-+*/]")) {
+                throw new IllegalArgumentException("Invalid input. Please enter a valid operator (+, -, *, /).");
+            }
+            return input;  // Return the valid operator
+        }
+
+        private void validateIsNumber(String input) throws IllegalArgumentException {
+            if (!input.matches("-?\\d+(\\.\\d+)?")) {
+                throw new IllegalArgumentException("Invalid input. Please enter a valid number.");
+            }
+        }
     }
-}

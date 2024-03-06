@@ -29,7 +29,7 @@ public class Application {
         double result = calculator.performCalculation(num1, num2, operator);
 
         System.out.print("Result: " + result);
-        } catch (ArithmeticException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
         } finally {
             // Close the scanner
