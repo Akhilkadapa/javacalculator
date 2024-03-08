@@ -1,56 +1,52 @@
 package readers;
-
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
-
 
 public class UserInput {
 
     private Scanner scanner;
 
+    public UserInput() {
+        this.scanner = new Scanner(System.in);
+    }
 
-        public UserInput() {
-            this.scanner = new Scanner(System.in);
-        }
+    public double getNumber1() {
+        return getNumber("Enter number 1: ");
+    }
 
-        public List<String> getInputs() {
-            List<String> inputs = new ArrayList<>();
+    public double getNumber2() {
+        return getNumber("Enter number 2: ");
+    }
 
+    public String getValidOperator() {
+        return getOperator("Enter the operation (+, -, *, /): ");
+    }
+
+    private double getNumber(String prompt) {
+        while (true) {
             try {
-                System.out.print("Enter number 1: ");
-                inputs.add(scanner.next());
+                System.out.print(prompt);
+                return scanner.nextDouble();
             } catch (InputMismatchException e) {
-                System.err.println("Invalid input for number 1. Please enter a valid number.");
-                scanner.next();
-                return getInputs(); // Retry the entire input process
+                System.err.println("Invalid input. Please enter a valid number.");
+                scanner.next(); // Clear the buffer
             }
+        }
+    }
 
-            try {
-                System.out.print("Enter number 2: ");
-                inputs.add(scanner.next());
-            } catch (InputMismatchException e) {
-                System.err.println("Invalid input for number 2. Please enter a valid number.");
-                scanner.next(); //
-                return getInputs(); // Retry the entire input process
+    private String getOperator(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String operator = scanner.next();
+            if (operator.matches("[-+*/]")) {
+                return operator;
+            } else {
+                System.err.println("Invalid input. Please enter a valid operator (+, -, *, /).");
             }
-
-            try {
-                System.out.print("Enter the operation (+, -, *, /): ");
-                inputs.add(scanner.next());
-            } catch (InputMismatchException e) {
-                System.err.println("Invalid input for the operation. Please enter a valid operator (+, -, *, /).");
-                scanner.next(); //
-                return getInputs(); // Retry the entire input process
-            }
-
-            return inputs;
         }
+    }
 
-        public void closeScanner() {
-            scanner.close();
-        }
-
-
-        }
+    public void closeScanner() {
+        scanner.close();
+    }
+}

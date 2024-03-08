@@ -1,7 +1,6 @@
 import readers.UserInput;
 import service.BasicCalculator;
 
-import java.util.List;
 import validators.Validator;
 
 
@@ -12,30 +11,24 @@ public class Application {
         UserInput userInput = new UserInput();
         Validator validator = new Validator();
 
-
         try {
-        // Get inputs
-        List<String> inputs = userInput.getInputs();
+            // Get numbers
+            double num1 = userInput.getNumber1();
+            double num2 = userInput.getNumber2();
 
-        // Validate and get numbers
-        double num1 = validator.getValidNumber(inputs.get(0));
-        double num2 = validator.getValidNumber(inputs.get(1));
+            // Get operator
+            String operator = userInput.getValidOperator();
 
-        // Validate and get operator
-        String operator = validator.getValidOperator(inputs.get(2));
+            // Call the calculate method
+            BasicCalculator calculator = new BasicCalculator();
+            double result = calculator.performCalculation(num1, num2, operator);
 
-        // Call the calculate method
-        BasicCalculator calculator = new BasicCalculator();
-        double result = calculator.performCalculation(num1, num2, operator);
-
-        System.out.print("Result: " + result);
+            System.out.print("Result: " + result);
         } catch (ArithmeticException | IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
         } finally {
             // Close the scanner
             userInput.closeScanner();
         }
-        // Close the scanner
-        userInput.closeScanner();
     }
 }
