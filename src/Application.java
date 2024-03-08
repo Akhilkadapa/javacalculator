@@ -3,7 +3,6 @@ import service.BasicCalculator;
 
 import validators.Validator;
 
-
 public class Application {
 
     public static void main(String[] args) {
@@ -13,11 +12,11 @@ public class Application {
 
         try {
             // Get numbers
-            double num1 = userInput.getNumber1();
-            double num2 = userInput.getNumber2();
+            double num1 = Double.parseDouble(validator.getNumber(userInput.getNumber1()));
+            double num2 = Double.parseDouble(validator.getNumber(userInput.getNumber2()));
 
             // Get operator
-            String operator = userInput.getValidOperator();
+            String operator = validator.getOperator(userInput.getValidOperator());
 
             // Call the calculate method
             BasicCalculator calculator = new BasicCalculator();

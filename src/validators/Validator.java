@@ -1,27 +1,26 @@
-
 package validators;
+
 public class Validator {
 
+    public String getNumber(String input) throws IllegalArgumentException {
+        validateIsNumber(input);
+        return String.valueOf(Double.parseDouble(input));
+    }
 
-        public double getValidNumber(String input) throws IllegalArgumentException {
-            try {
-                validateIsNumber(input);
-                return Double.parseDouble(input);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Invalid input. Please enter a valid number.");
-            }
-        }
+    public String getOperator(String input) throws IllegalArgumentException {
+        validateIsOperator(input);
+        return input;
+    }
 
-        public String getValidOperator(String input) throws IllegalArgumentException {
-            if (!input.matches("[-+*/]")) {
-                throw new IllegalArgumentException("Invalid input. Please enter a valid operator (+, -, *, /).");
-            }
-            return input;  // Return the valid operator
-        }
-
-        private void validateIsNumber(String input) throws IllegalArgumentException {
-            if (!input.matches("-?\\d+(\\.\\d+)?")) {
-                throw new IllegalArgumentException("Invalid input. Please enter a valid number.");
-            }
+    private void validateIsNumber(String input) throws IllegalArgumentException {
+        if (!input.matches("-?\\d+(\\.\\d+)?")) {
+            throw new IllegalArgumentException("Invalid input. Please enter a valid number.");
         }
     }
+
+    private void validateIsOperator(String input) throws IllegalArgumentException {
+        if (!input.matches("[-+*/]")) {
+            throw new IllegalArgumentException("Invalid input. Please enter a valid operator (+, -, *, /).");
+        }
+    }
+}

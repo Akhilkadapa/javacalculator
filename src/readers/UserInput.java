@@ -2,6 +2,7 @@ package readers;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 public class UserInput {
 
     private Scanner scanner;
@@ -10,12 +11,12 @@ public class UserInput {
         this.scanner = new Scanner(System.in);
     }
 
-    public double getNumber1() {
-        return getNumber("Enter number 1: ");
+    public String getNumber1() {
+        return String.valueOf(getNumber("Enter number 1: "));
     }
 
-    public double getNumber2() {
-        return getNumber("Enter number 2: ");
+    public String getNumber2() {
+        return String.valueOf(getNumber("Enter number 2: "));
     }
 
     public String getValidOperator() {
