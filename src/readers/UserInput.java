@@ -2,7 +2,6 @@ package readers;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
 public class UserInput {
 
     private Scanner scanner;

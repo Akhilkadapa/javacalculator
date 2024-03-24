@@ -1,6 +1,5 @@
 import readers.UserInput;
 import service.BasicCalculator;
-
 import validators.Validator;
 
 public class Application {
